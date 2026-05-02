@@ -63,7 +63,7 @@ app.get('/api/weather', async (req, res) => {
       const newsApiKey = process.env.NEWS_API_KEY;
       if (newsApiKey) {
         const newsResponse = await axios.get(
-          `https://newsapi.org/v2/everything?qInTitle=${encodeURIComponent(city)}&sortBy=relevancy&apiKey=${newsApiKey}&language=en&pageSize=5`
+          `https://newsapi.org/v2/everything?qInTitle=${encodeURIComponent(city)}&sortBy=relevancy&apiKey=${newsApiKey}&language=en&pageSize=15`
         );
         mappedData.news = newsResponse.data.articles.map(article => ({
           title: article.title,

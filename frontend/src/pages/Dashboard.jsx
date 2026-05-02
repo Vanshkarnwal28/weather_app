@@ -122,11 +122,14 @@ function Dashboard({ weather, city, setCity, fetchWeather, loading, error, getWe
             {weather.news && weather.news.length > 0 && (
               <div className="glass-panel" style={{ gridColumn: '1 / -1', padding: '2rem' }}>
                 <h3 className="shine-gold" style={{ fontSize: '1.5rem', letterSpacing: '1px', marginBottom: '1.5rem', margin: 0 }}>LATEST CITY TRANSMISSIONS</h3>
-                <div style={{ display: 'flex', gap: '1.5rem', overflowX: 'auto', paddingBottom: '1rem' }}>
-                  {weather.news.slice(0, 3).map((article, idx) => (
-                    <a key={idx} href={article.url} target="_blank" rel="noopener noreferrer" style={{ minWidth: '300px', flex: 1, textDecoration: 'none', color: 'white', background: 'rgba(0,0,0,0.4)', borderRadius: '12px', padding: '1rem', border: '1px solid rgba(255,215,0,0.2)', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                      <h4 style={{ fontSize: '1.1rem', margin: 0, lineHeight: 1.4 }}>{article.title}</h4>
-                      <p style={{ fontSize: '0.8rem', opacity: 0.6, margin: 0 }}>{article.source}</p>
+                <div style={{ display: 'flex', gap: '1.5rem', overflowX: 'auto', paddingBottom: '1rem', scrollbarWidth: 'thin', scrollbarColor: 'rgba(255,215,0,0.5) transparent' }}>
+                  {weather.news.map((article, idx) => (
+                    <a key={idx} href={article.url} target="_blank" rel="noopener noreferrer" style={{ minWidth: '320px', maxWidth: '320px', flex: '0 0 auto', textDecoration: 'none', color: 'white', background: 'rgba(0,0,0,0.4)', borderRadius: '12px', padding: '1.5rem', border: '1px solid rgba(255,215,0,0.2)', display: 'flex', flexDirection: 'column', gap: '0.8rem', transition: 'all 0.3s ease' }}
+                       onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.borderColor = 'rgba(255,215,0,0.6)'; }}
+                       onMouseLeave={(e) => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.borderColor = 'rgba(255,215,0,0.2)'; }}
+                    >
+                      <h4 style={{ fontSize: '1.1rem', margin: 0, lineHeight: 1.4, display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{article.title}</h4>
+                      <p style={{ fontSize: '0.85rem', opacity: 0.6, margin: 0, marginTop: 'auto' }}>{article.source}</p>
                     </a>
                   ))}
                 </div>
