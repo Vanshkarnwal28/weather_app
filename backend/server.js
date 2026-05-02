@@ -121,6 +121,40 @@ app.get('/api/news', async (req, res) => {
   }
 });
 
+// Photos Route (Fetch images for a city from Unsplash)
+app.get('/api/photos', async (req, res) => {
+  try {
+    const { city } = req.query;
+    const unsplashApiKey = process.env.UNSPLASH_API_KEY;
+
+    if (!unsplashApiKey) {
+      return res.status(500).json({ error: 'UNSPLASH_API_KEY is not defined' });
+    }
+
+    if (!city) {
+      return res.status(400).json({ error: 'City parameter is required' });
+    }
+
+    const response = await axios.get(
+      `https://api.unsplash.com/search/photos?query=${encodeURIComponent(city + ' city architecture')}&client_id=${unsplashApiKey}&per_page=10&orientation=landscape`
+    );
+
+    const photos = response.data.results.map(photo => ({
+      id: photo.id,
+      url: photo.urls.regular,
+      thumbnail: photo.urls.small,
+      alt_description: photo.alt_description,
+      photographer: photo.user.name,
+      photographer_url: photo.user.links.html
+    }));
+
+    res.json({ photos });
+  } catch (error) {
+    console.error('Error fetching photos:', error.response?.data || error.message);
+    res.status(500).json({ error: 'Failed to fetch photos' });
+  }
+});
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
