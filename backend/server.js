@@ -63,7 +63,7 @@ app.get('/api/weather', async (req, res) => {
       const newsApiKey = process.env.NEWS_API_KEY;
       if (newsApiKey) {
         const newsResponse = await axios.get(
-          `https://newsapi.org/v2/everything?qInTitle=${encodeURIComponent(city)}&sortBy=relevancy&apiKey=${newsApiKey}&language=en&pageSize=15`
+          `https://newsapi.org/v2/everything?qInTitle=${encodeURIComponent(city)}&sortBy=relevancy&apiKey=${newsApiKey}&language=en&pageSize=100`
         );
         mappedData.news = newsResponse.data.articles.map(article => ({
           title: article.title,
@@ -102,7 +102,7 @@ app.get('/api/news', async (req, res) => {
 
     // Fetch top headlines for India (using everything endpoint since top-headlines might be restricted on free tier)
     const response = await axios.get(
-      `https://newsapi.org/v2/everything?q=${encodeURIComponent(q)}&sortBy=relevancy&apiKey=${newsApiKey}&language=en&pageSize=15`
+      `https://newsapi.org/v2/everything?q=${encodeURIComponent(q)}&sortBy=relevancy&apiKey=${newsApiKey}&language=en&pageSize=100`
     );
 
     const articles = response.data.articles.map(article => ({
