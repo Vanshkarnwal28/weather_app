@@ -1,0 +1,158 @@
+import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import axios from 'axios';
+import { Search, Loader2, Compass, LayoutDashboard, Map as MapIcon, Calendar, Newspaper } from 'lucide-react';
+import './index.css';
+
+// Import Pages
+import Dashboard from './pages/Dashboard';
+import MapPage from './pages/MapPage';
+import Forecast from './pages/Forecast';
+import NewsPage from './pages/NewsPage';
+
+// Generate static starfields outside the component so they don't re-render on input changes
+const generateStars = (count) => {
+  let shadows = [];
+  for (let i = 0; i < count; i++) {
+    shadows.push(`${Math.floor(Math.random() * 2000)}px ${Math.floor(Math.random() * 2000)}px #FFF`);
+  }
+  return shadows.join(', ');
+};
+
+const starsLayer1 = generateStars(700);
+const starsLayer2 = generateStars(200);
+
+// Inner app component to use location
+function AppContent() {
+  const [city, setCity] = useState('');
+  const [weather, setWeather] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  
+  const location = useLocation();
+
+  const fetchWeather = async (e) => {
+    if (e) e.preventDefault();
+    if (!city.trim()) return;
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await axios.get(`http://localhost:5001/api/weather?city=${city}`);
+      setWeather(response.data);
+    } catch (err) {
+      setError(err.response?.data?.error || 'Failed to fetch weather data');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getWeatherIcon = (iconCode) => {
+    if (iconCode.startsWith('//') || iconCode.startsWith('http')) {
+      return iconCode.startsWith('//') ? `https:${iconCode}` : iconCode;
+    }
+    return `https://openweathermap.org/img/wn/${iconCode}@4x.png`;
+  };
+
+  // Determine if we should show the small search bar in the nav (hide it on the home page if no weather is loaded, since the big search bar is there)
+  const showSmallSearch = weather || location.pathname !== '/';
+
+  return (
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      
+      {/* Animated Gradient & Space Environment combined */}
+      <div className="gradient-bg">
+        <div className="stars" style={{ boxShadow: starsLayer1 }} />
+        <div className="stars2" style={{ boxShadow: starsLayer2 }} />
+        <div className="earth-container" />
+      </div>
+
+      {/* Dashboard Top Navigation - Always visible */}
+      <nav className="glass-panel" style={{ 
+        margin: '1.5rem', 
+        padding: '1rem 2rem', 
+        display: 'grid', 
+        gridTemplateColumns: '1fr auto 1fr',
+        alignItems: 'center',
+        borderRadius: '16px',
+        border: '1px solid rgba(255,215,0,0.2)',
+        position: 'relative',
+        minHeight: '80px',
+        zIndex: 10
+      }}>
+        {/* Logo */}
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <Link to="/" style={{ textDecoration: 'none' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <Compass size={24} color="#ffffff" />
+              <h1 className="shine-text" style={{ fontSize: '1.5rem', fontWeight: 700, letterSpacing: '2px', margin: 0 }}>AURA</h1>
+            </div>
+          </Link>
+          <span style={{ fontSize: '0.65rem', color: '#ffd700', letterSpacing: '1px', marginTop: '4px', fontWeight: 600 }}>GLOBAL TELEMETRY & NEWS</span>
+        </div>
+
+        {/* Search Bar - Center */}
+        {showSmallSearch ? (
+          <form onSubmit={fetchWeather} style={{ display: 'flex', gap: '0.5rem', width: '100%', minWidth: '400px' }}>
+            <input 
+              type="text" 
+              placeholder="Search for a city..." 
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              className="glass-input"
+              style={{ flex: 1, padding: '0.8rem 1.5rem', borderRadius: '50px', fontSize: '1rem' }}
+            />
+            <button 
+              type="submit" 
+              disabled={loading}
+              className="glass-input"
+              style={{ borderRadius: '50px', width: '45px', height: '45px', display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer' }}
+            >
+              {loading ? <Loader2 className="animate-spin" size={20} /> : <Search size={20} />}
+            </button>
+          </form>
+        ) : <div />}
+
+        {/* Navigation Links - Right */}
+        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '1.5rem' }}>
+          <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: location.pathname === '/' ? '#ffffff' : '#ffd700', textDecoration: 'none', fontWeight: 600, transition: 'all 0.3s ease', opacity: location.pathname === '/' ? 1 : 0.7 }}>
+            <LayoutDashboard size={18} />
+            <span className="nav-link-text">Dashboard</span>
+          </Link>
+          <Link to="/map" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: location.pathname === '/map' ? '#ffffff' : '#ffd700', textDecoration: 'none', fontWeight: 600, transition: 'all 0.3s ease', opacity: location.pathname === '/map' ? 1 : 0.7 }}>
+            <MapIcon size={18} />
+            <span className="nav-link-text">Map</span>
+          </Link>
+          <Link to="/forecast" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: location.pathname === '/forecast' ? '#ffffff' : '#ffd700', textDecoration: 'none', fontWeight: 600, transition: 'all 0.3s ease', opacity: location.pathname === '/forecast' ? 1 : 0.7 }}>
+            <Calendar size={18} />
+            <span className="nav-link-text">Forecast</span>
+          </Link>
+          <Link to="/news" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: location.pathname === '/news' ? '#ffffff' : '#ffd700', textDecoration: 'none', fontWeight: 600, transition: 'all 0.3s ease', opacity: location.pathname === '/news' ? 1 : 0.7 }}>
+            <Newspaper size={18} />
+            <span className="nav-link-text">News</span>
+          </Link>
+        </div>
+      </nav>
+
+      {/* Page Routes */}
+      <Routes>
+        <Route path="/" element={<Dashboard weather={weather} city={city} setCity={setCity} fetchWeather={fetchWeather} loading={loading} error={error} getWeatherIcon={getWeatherIcon} />} />
+        <Route path="/map" element={<MapPage weather={weather} />} />
+        <Route path="/forecast" element={<Forecast weather={weather} getWeatherIcon={getWeatherIcon} />} />
+        <Route path="/news" element={<NewsPage weather={weather} />} />
+      </Routes>
+      
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
+  );
+}
+
+export default App;
