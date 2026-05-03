@@ -32,7 +32,7 @@ function ChatBot({ setCity, fetchWeather, weather, error }) {
         if (lastMsg && lastMsg.text === newMsg) return prev;
         return [...prev, { sender: 'bot', text: newMsg }];
       });
-      if (!isOpen) setIsOpen(true);
+      if (!isOpen && window.innerWidth > 768) setIsOpen(true);
     }
   }, [weather]);
 
@@ -44,7 +44,7 @@ function ChatBot({ setCity, fetchWeather, weather, error }) {
         if (lastMsg && lastMsg.text === newMsg) return prev;
         return [...prev, { sender: 'bot', text: newMsg }];
       });
-      if (!isOpen) setIsOpen(true);
+      if (!isOpen && window.innerWidth > 768) setIsOpen(true);
     }
   }, [error]);
 

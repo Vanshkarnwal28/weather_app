@@ -247,10 +247,14 @@ body {
     font-size: 1rem !important;
   }
   .chatbot-window {
-    width: 90vw !important;
-    height: 60vh !important;
-    right: 5vw !important;
-    bottom: 5rem !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    top: 0 !important;
+    margin-bottom: 0 !important;
+    border-radius: 0 !important;
+    z-index: 9999 !important;
   }
   .chatbot-container {
     right: 1rem !important;
