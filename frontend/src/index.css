@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --text-dark: #1e293b;
+  --text-dark: #0f172a;
   --text-light: #ffffff;
-  --gold: #ffd700;
+  --blue: #2563eb;
   
-  /* Black & Gold glass */
-  --glass-bg: rgba(10, 10, 10, 0.65);
-  --glass-border: rgba(255, 215, 0, 0.25);
-  --glass-highlight: rgba(255, 215, 0, 0.4);
-  --glass-shadow: 0 30px 60px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 215, 0, 0.1);
+  /* Corporate Light Glass */
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --glass-highlight: rgba(255, 255, 255, 0.9);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.04), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
 }
 
 * {
@@ -20,9 +20,9 @@
 
 body {
   font-family: 'Space Grotesk', sans-serif;
-  color: var(--text-light);
+  color: var(--text-dark);
   overflow-x: hidden;
-  background-color: #000000; /* Pure Black */
+  background-color: #f8fafc;
 }
 
 /* Background Elements */
@@ -33,113 +33,9 @@ body {
   width: 100vw;
   height: 100vh;
   z-index: -3;
-  background: radial-gradient(circle at 70% 80%, #1a1500 0%, #000000 70%);
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
   overflow: hidden;
 }
-
-/* Stars Animation (Golden) */
-.stars {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 2px;
-  height: 2px;
-  background: transparent;
-  animation: animStar 150s linear infinite;
-  opacity: 0.8;
-}
-.stars::after {
-  content: " ";
-  position: absolute;
-  top: 2000px;
-  width: 2px;
-  height: 2px;
-  background: transparent;
-}
-
-.stars2 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 3px;
-  height: 3px;
-  background: transparent;
-  animation: animStar 100s linear infinite;
-  opacity: 0.5;
-}
-.stars2::after {
-  content: " ";
-  position: absolute;
-  top: 2000px;
-  width: 3px;
-  height: 3px;
-  background: transparent;
-}
-
-@keyframes animStar {
-  from { transform: translateY(0px); }
-  to { transform: translateY(-2000px); }
-}
-
-/* Rotating Earth CSS Sphere - Black & Gold High Contrast */
-.earth-container {
-  position: fixed;
-  right: -10vw;
-  bottom: -20vh;
-  width: 80vh;
-  height: 80vh;
-  border-radius: 50%;
-  /* Using a high contrast map to only show continents clearly */
-  background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Earthmap1000x500compac.jpg/1000px-Earthmap1000x500compac.jpg');
-  background-size: 200% 100%;
-  animation: rotateEarth 40s linear infinite;
-  
-  /* Extreme filters to turn the image into a glowing black and gold map */
-  filter: sepia(100%) hue-rotate(5deg) saturate(800%) brightness(0.5) contrast(2.5);
-  
-  box-shadow: 
-    inset -80px -80px 150px rgba(0,0,0,1), /* Deep dark side of the earth */
-    inset 20px 20px 50px rgba(255,215,0,0.3), /* Golden light side highlight */
-    0 0 120px rgba(255, 215, 0, 0.2); /* Golden Atmospheric glow */
-  z-index: -2;
-}
-
-/* The revolving circle ring around the earth */
-.earth-container::before {
-  content: '';
-  position: absolute;
-  top: -10%;
-  left: -10%;
-  width: 120%;
-  height: 120%;
-  border-radius: 50%;
-  border: 2px dashed rgba(255, 215, 0, 0.4);
-  border-top-color: transparent;
-  border-bottom-color: transparent;
-  animation: rotateRing 20s linear infinite reverse;
-}
-.earth-container::after {
-  content: '';
-  position: absolute;
-  top: -5%;
-  left: -5%;
-  width: 110%;
-  height: 110%;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 215, 0, 0.1);
-  animation: rotateRing 30s linear infinite;
-}
-
-@keyframes rotateRing {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes rotateEarth {
-  from { background-position: 0 0; }
-  to { background-position: 200% 0; }
-}
-
 
 /* High-End Glassmorphism Utilities */
 .glass-panel {
@@ -156,8 +52,8 @@ body {
 
 .glass-panel:hover {
   transform: translateY(-5px);
-  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 215, 0, 0.3);
-  border-color: rgba(255, 215, 0, 0.4);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  border-color: rgba(255, 255, 255, 0.8);
 }
 
 .glass-panel::before {
@@ -172,26 +68,31 @@ body {
 }
 
 .glass-input {
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 215, 0, 0.2);
-  color: white;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  color: var(--text-dark);
   transition: all 0.3s ease;
   font-family: 'Space Grotesk', sans-serif;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+
+.glass-input::placeholder {
+  color: #64748b;
 }
 
 .glass-input:hover {
-  border-color: rgba(255, 215, 0, 0.5);
-  background: rgba(20, 20, 0, 0.6);
+  border-color: rgba(37, 99, 235, 0.3);
+  background: rgba(255, 255, 255, 0.95);
   transform: scale(1.02);
 }
 
 .glass-input:focus {
   outline: none;
-  border-color: rgba(255, 215, 0, 0.8);
-  background: rgba(20, 20, 0, 0.8);
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+  border-color: rgba(37, 99, 235, 0.5);
+  background: #ffffff;
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.1);
   transform: scale(1.02);
 }
 
@@ -203,22 +104,22 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 215, 0, 0.3);
+  background: rgba(37, 99, 235, 0.2);
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 215, 0, 0.5);
+  background: rgba(37, 99, 235, 0.4);
 }
 
 /* Shining Text Animation */
 .shine-text {
   background: linear-gradient(
     120deg,
-    rgba(255, 255, 255, 0.6) 0%,
-    rgba(255, 255, 255, 0.6) 40%,
-    rgba(255, 255, 255, 1) 50%,
-    rgba(255, 255, 255, 0.6) 60%,
-    rgba(255, 255, 255, 0.6) 100%
+    #0f172a 0%,
+    #0f172a 40%,
+    #475569 50%,
+    #0f172a 60%,
+    #0f172a 100%
   );
   background-size: 200% auto;
   color: transparent;
@@ -227,15 +128,15 @@ body {
   animation: shine 3s linear infinite;
 }
 
-/* Shining Gold Animation */
-.shine-gold {
+/* Shining Blue Animation */
+.shine-blue {
   background: linear-gradient(
     120deg,
-    rgba(255, 215, 0, 0.8) 0%,
-    rgba(255, 215, 0, 0.8) 40%,
-    rgba(255, 255, 150, 1) 50%,
-    rgba(255, 215, 0, 0.8) 60%,
-    rgba(255, 215, 0, 0.8) 100%
+    #2563eb 0%,
+    #2563eb 40%,
+    #60a5fa 50%,
+    #2563eb 60%,
+    #2563eb 100%
   );
   background-size: 200% auto;
   color: transparent;
@@ -248,4 +149,71 @@ body {
   to {
     background-position: 200% center;
   }
+}
+
+/* Animated Seamless Realistic Cloud Background */
+.clouds-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  pointer-events: none;
+  background-image: url('/cloud.png');
+  background-size: 150% auto;
+  background-position: center;
+  mix-blend-mode: multiply;
+  opacity: 0.8;
+  mask-image: radial-gradient(circle at center, black 10%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at center, black 10%, transparent 80%);
+  animation: panClouds 15s ease-in-out infinite alternate;
+}
+
+@keyframes panClouds {
+  0% { background-position: 0% 50%; transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { background-position: 100% 50%; transform: scale(1); }
+}
+
+/* Chatbot Styles */
+.chatbot-trigger {
+  animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(37, 99, 235, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+}
+
+.chat-message {
+  padding: 0.8rem 1.2rem;
+  border-radius: 18px;
+  max-width: 85%;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.chat-message.bot {
+  background: rgba(255, 255, 255, 0.9);
+  color: #0f172a;
+  border: 1px solid rgba(0,0,0,0.05);
+  border-bottom-left-radius: 4px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+.chat-message.user {
+  background: #2563eb;
+  color: #ffffff;
+  border-bottom-right-radius: 4px;
+  align-self: flex-end;
+  box-shadow: 0 4px 15px rgba(37,99,235,0.2);
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }

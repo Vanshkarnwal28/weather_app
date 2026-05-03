@@ -39,18 +39,18 @@ function NewsPage({ weather }) {
       style={{ flex: 1, padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
     >
       <div style={{ width: '100%', maxWidth: '1200px' }}>
-        <h2 className="shine-gold" style={{ fontSize: '2.5rem', marginBottom: '2rem', letterSpacing: '2px', display: 'flex', alignItems: 'center', gap: '1rem', textTransform: 'uppercase' }}>
-          <Newspaper size={36} color="#ffd700" />
+        <h2 className="shine-blue" style={{ fontSize: '2.5rem', marginBottom: '2rem', letterSpacing: '2px', display: 'flex', alignItems: 'center', gap: '1rem', textTransform: 'uppercase' }}>
+          <Newspaper size={36} color="#2563eb" />
           {title}
         </h2>
         
         {loading ? (
           <div className="glass-panel" style={{ padding: '4rem', display: 'flex', justifyContent: 'center' }}>
-            <Loader2 className="animate-spin" size={48} color="#ffd700" />
+            <Loader2 className="animate-spin" size={48} color="#2563eb" />
           </div>
         ) : !newsData || newsData.length === 0 ? (
           <div className="glass-panel" style={{ padding: '3rem', textAlign: 'center' }}>
-            <h3 style={{ color: '#ffd700', opacity: 0.6 }}>No recent transmissions found.</h3>
+            <h3 style={{ color: '#2563eb', opacity: 0.6 }}>No recent transmissions found.</h3>
           </div>
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
@@ -66,26 +66,26 @@ function NewsPage({ weather }) {
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="glass-panel" 
-                  style={{ display: 'flex', padding: '1.5rem', gap: '2rem', textDecoration: 'none', color: 'white', alignItems: 'center', transition: 'all 0.3s ease' }}
-                  onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-5px) scale(1.01)'; e.currentTarget.style.borderColor = 'rgba(255,215,0,0.6)'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.borderColor = 'rgba(255,215,0,0.2)'; }}
+                  style={{ display: 'flex', padding: '1.5rem', gap: '2rem', textDecoration: 'none', color: '#0f172a', alignItems: 'center', transition: 'all 0.3s ease', border: '1px solid rgba(0,0,0,0.05)' }}
+                  onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-5px) scale(1.01)'; e.currentTarget.style.borderColor = 'rgba(37,99,235,0.4)'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.borderColor = 'rgba(0,0,0,0.05)'; }}
                 >
                   {article.imageUrl && (
                     <img 
                       src={article.imageUrl} 
                       alt="News thumbnail" 
-                      style={{ width: '200px', height: '140px', objectFit: 'cover', borderRadius: '12px', border: '1px solid rgba(255,215,0,0.3)' }}
+                      style={{ width: '200px', height: '140px', objectFit: 'cover', borderRadius: '12px', border: '1px solid rgba(0,0,0,0.1)' }}
                     />
                   )}
                   <div style={{ flex: 1 }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem', opacity: 0.6, fontSize: '0.9rem', color: '#ffd700' }}>
-                      <span className="shine-gold" style={{ fontWeight: 600 }}>{article.source}</span>
-                      <span>{pubDate}</span>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem', opacity: 0.8, fontSize: '0.9rem', color: '#2563eb' }}>
+                      <span className="shine-blue" style={{ fontWeight: 600 }}>{article.source}</span>
+                      <span style={{ color: '#64748b' }}>{pubDate}</span>
                     </div>
                     <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', lineHeight: 1.3 }}>{article.title}</h3>
                     <p style={{ opacity: 0.8, lineHeight: 1.5 }}>{article.description}</p>
                   </div>
-                  <ExternalLink size={24} color="#ffd700" style={{ opacity: 0.5 }} />
+                  <ExternalLink size={24} color="#2563eb" style={{ opacity: 0.5 }} />
                 </a>
               );
             })}

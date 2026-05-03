@@ -46,7 +46,7 @@ function Dashboard({ weather, error, getWeatherIcon }) {
 
         {loadingDefault && !activeWeather ? (
           <div style={{ display: 'flex', justifyContent: 'center', padding: '4rem' }}>
-            <Loader2 className="animate-spin" size={48} color="#ffd700" />
+            <Loader2 className="animate-spin" size={48} color="#2563eb" />
           </div>
         ) : activeWeather && (
           <motion.div 
@@ -61,12 +61,12 @@ function Dashboard({ weather, error, getWeatherIcon }) {
             <div className="glass-panel" style={{ gridColumn: '1 / -1', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', padding: '4rem', minHeight: '350px' }}>
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', opacity: 0.8 }}>
-                  <MapPin size={24} color="#ffd700" />
-                  <h2 className="shine-gold" style={{ fontSize: '1.5rem', fontWeight: 600, letterSpacing: '2px', textTransform: 'uppercase', margin: 0 }}>
+                  <MapPin size={24} color="#2563eb" />
+                  <h2 className="shine-blue" style={{ fontSize: '1.5rem', fontWeight: 600, letterSpacing: '2px', textTransform: 'uppercase', margin: 0 }}>
                     {!weather ? `Global Focus: ${activeWeather.name}` : `${activeWeather.name}, ${activeWeather.sys.country}`}
                   </h2>
                 </div>
-                <h1 style={{ fontSize: '8rem', fontWeight: 700, lineHeight: 1, margin: 0, textShadow: '0 10px 40px rgba(255,215,0,0.4)' }}>
+                <h1 style={{ fontSize: '8rem', fontWeight: 700, lineHeight: 1, margin: 0 }}>
                   {Math.round(activeWeather.main.temp)}°
                 </h1>
                 <p style={{ fontSize: '2rem', fontWeight: 300, textTransform: 'capitalize', marginTop: '0.5rem', opacity: 0.8 }}>
@@ -76,15 +76,15 @@ function Dashboard({ weather, error, getWeatherIcon }) {
               <img 
                 src={getWeatherIcon(activeWeather.weather[0].icon)} 
                 alt="weather condition" 
-                style={{ width: '200px', height: '200px', filter: 'drop-shadow(0px 20px 30px rgba(0,0,0,0.6)) brightness(1.2)' }} 
+                style={{ width: '200px', height: '200px', filter: 'drop-shadow(0px 20px 30px rgba(0,0,0,0.1)) brightness(0.9)' }} 
               />
             </div>
 
             {/* Secondary Metrics Grid */}
             <div className="glass-panel" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', opacity: 0.7, marginBottom: '1rem' }}>
-                <ThermometerSun size={24} color="#ffd700" />
-                <span className="shine-gold" style={{ fontSize: '1.1rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px' }}>Feels Like</span>
+                <ThermometerSun size={24} color="#2563eb" />
+                <span className="shine-blue" style={{ fontSize: '1.1rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px' }}>Feels Like</span>
               </div>
               <h3 style={{ fontSize: '3.5rem', fontWeight: 600, margin: 0 }}>{Math.round(activeWeather.main.feels_like)}°</h3>
               <p style={{ opacity: 0.5, marginTop: '1rem', fontSize: '0.9rem' }}>Slightly different based on wind and humidity.</p>
@@ -92,19 +92,19 @@ function Dashboard({ weather, error, getWeatherIcon }) {
 
             <div className="glass-panel" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', opacity: 0.7, marginBottom: '1rem' }}>
-                <Wind size={24} color="#ffd700" />
-                <span className="shine-gold" style={{ fontSize: '1.1rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px' }}>Wind Speed</span>
+                <Wind size={24} color="#2563eb" />
+                <span className="shine-blue" style={{ fontSize: '1.1rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px' }}>Wind Speed</span>
               </div>
               <h3 style={{ fontSize: '3.5rem', fontWeight: 600, margin: 0 }}>{activeWeather.wind.speed} <span style={{fontSize: '1.5rem', opacity:0.5}}>m/s</span></h3>
-              <div style={{ width: '100%', height: '4px', background: 'rgba(255,215,0,0.2)', borderRadius: '2px', marginTop: '1.5rem' }}>
-                 <div style={{ width: `${Math.min((activeWeather.wind.speed / 20) * 100, 100)}%`, height: '100%', background: '#ffd700', borderRadius: '2px', boxShadow: '0 0 10px #ffd700' }} />
+              <div style={{ width: '100%', height: '4px', background: 'rgba(37,99,235,0.2)', borderRadius: '2px', marginTop: '1.5rem' }}>
+                 <div style={{ width: `${Math.min((activeWeather.wind.speed / 20) * 100, 100)}%`, height: '100%', background: '#2563eb', borderRadius: '2px', boxShadow: '0 0 10px rgba(37,99,235,0.5)' }} />
               </div>
             </div>
 
             <div className="glass-panel" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', opacity: 0.7, marginBottom: '1rem' }}>
-                <Droplets size={24} color="#ffd700" />
-                <span className="shine-gold" style={{ fontSize: '1.1rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px' }}>Humidity</span>
+                <Droplets size={24} color="#2563eb" />
+                <span className="shine-blue" style={{ fontSize: '1.1rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px' }}>Humidity</span>
               </div>
               <h3 style={{ fontSize: '3.5rem', fontWeight: 600, margin: 0 }}>{activeWeather.main.humidity}<span style={{fontSize: '2rem', opacity: 0.5}}>%</span></h3>
               <p style={{ opacity: 0.5, marginTop: '1rem', fontSize: '0.9rem' }}>Dew point affects perceived temperature.</p>
@@ -113,12 +113,12 @@ function Dashboard({ weather, error, getWeatherIcon }) {
             {/* Quick News Widget */}
             {activeWeather.news && activeWeather.news.length > 0 && (
               <div className="glass-panel" style={{ gridColumn: '1 / -1', padding: '2rem' }}>
-                <h3 className="shine-gold" style={{ fontSize: '1.5rem', letterSpacing: '1px', marginBottom: '1.5rem', margin: 0 }}>LATEST CITY TRANSMISSIONS</h3>
-                <div style={{ display: 'flex', gap: '1.5rem', overflowX: 'auto', paddingBottom: '1rem', scrollbarWidth: 'thin', scrollbarColor: 'rgba(255,215,0,0.5) transparent' }}>
+                <h3 className="shine-blue" style={{ fontSize: '1.5rem', letterSpacing: '1px', marginBottom: '1.5rem', margin: 0 }}>LATEST CITY TRANSMISSIONS</h3>
+                <div style={{ display: 'flex', gap: '1.5rem', overflowX: 'auto', paddingBottom: '1rem', scrollbarWidth: 'thin', scrollbarColor: 'rgba(37,99,235,0.3) transparent' }}>
                   {activeWeather.news.map((article, idx) => (
-                    <a key={idx} href={article.url} target="_blank" rel="noopener noreferrer" style={{ minWidth: '320px', maxWidth: '320px', flex: '0 0 auto', textDecoration: 'none', color: 'white', background: 'rgba(0,0,0,0.4)', borderRadius: '12px', padding: '1.5rem', border: '1px solid rgba(255,215,0,0.2)', display: 'flex', flexDirection: 'column', gap: '0.8rem', transition: 'all 0.3s ease' }}
-                       onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.borderColor = 'rgba(255,215,0,0.6)'; }}
-                       onMouseLeave={(e) => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.borderColor = 'rgba(255,215,0,0.2)'; }}
+                    <a key={idx} href={article.url} target="_blank" rel="noopener noreferrer" style={{ minWidth: '320px', maxWidth: '320px', flex: '0 0 auto', textDecoration: 'none', color: '#0f172a', background: 'rgba(255,255,255,0.5)', borderRadius: '12px', padding: '1.5rem', border: '1px solid rgba(0,0,0,0.05)', display: 'flex', flexDirection: 'column', gap: '0.8rem', transition: 'all 0.3s ease' }}
+                       onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.borderColor = 'rgba(37,99,235,0.3)'; }}
+                       onMouseLeave={(e) => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.borderColor = 'rgba(0,0,0,0.05)'; }}
                     >
                       <h4 style={{ fontSize: '1.1rem', margin: 0, lineHeight: 1.4, display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{article.title}</h4>
                       <p style={{ fontSize: '0.85rem', opacity: 0.6, margin: 0, marginTop: 'auto' }}>{article.source}</p>

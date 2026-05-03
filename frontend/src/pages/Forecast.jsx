@@ -40,18 +40,18 @@ function Forecast({ weather, getWeatherIcon }) {
       style={{ flex: 1, padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
     >
       <div style={{ width: '100%', maxWidth: '1200px' }}>
-        <h2 className="shine-gold" style={{ fontSize: '2.5rem', marginBottom: '2rem', letterSpacing: '2px', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <Calendar size={36} color="#ffd700" />
+        <h2 className="shine-blue" style={{ fontSize: '2.5rem', marginBottom: '2rem', letterSpacing: '2px', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <Calendar size={36} color="#2563eb" />
           {title}
         </h2>
         
         {loading ? (
           <div className="glass-panel" style={{ padding: '4rem', display: 'flex', justifyContent: 'center' }}>
-            <Loader2 className="animate-spin" size={48} color="#ffd700" />
+            <Loader2 className="animate-spin" size={48} color="#2563eb" />
           </div>
         ) : !activeWeather || !activeWeather.forecast ? (
           <div className="glass-panel" style={{ padding: '3rem', textAlign: 'center' }}>
-            <h3 style={{ color: '#ffd700', opacity: 0.6 }}>No trajectory data available.</h3>
+            <h3 style={{ color: '#2563eb', opacity: 0.6 }}>No trajectory data available.</h3>
           </div>
         ) : (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
@@ -63,23 +63,23 @@ function Forecast({ weather, getWeatherIcon }) {
 
               return (
                 <div key={day.date} className="glass-panel" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-                  <h3 className="shine-gold" style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>{index === 0 ? 'Today' : dayName}</h3>
+                  <h3 className="shine-blue" style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>{index === 0 ? 'Today' : dayName}</h3>
                   <p style={{ opacity: 0.6, marginBottom: '1.5rem' }}>{shortDate}</p>
                   
                   <img 
                     src={getWeatherIcon(day.icon)} 
                     alt={day.condition} 
-                    style={{ width: '120px', height: '120px', filter: 'drop-shadow(0px 10px 15px rgba(0,0,0,0.5)) brightness(1.2)', marginBottom: '1rem' }} 
+                    style={{ width: '120px', height: '120px', filter: 'drop-shadow(0px 10px 15px rgba(0,0,0,0.1)) brightness(0.9)', marginBottom: '1rem' }} 
                   />
                   
                   <p style={{ fontSize: '1.2rem', fontWeight: 600, marginBottom: '1.5rem', textTransform: 'capitalize' }}>
                     {day.condition}
                   </p>
                   
-                  <div style={{ display: 'flex', justifyContent: 'space-around', width: '100%', borderTop: '1px solid rgba(255,215,0,0.2)', paddingTop: '1.5rem' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-around', width: '100%', borderTop: '1px solid rgba(37,99,235,0.2)', paddingTop: '1.5rem' }}>
                     <div>
                       <p style={{ opacity: 0.5, fontSize: '0.9rem' }}>MAX</p>
-                      <p className="shine-gold" style={{ fontSize: '1.8rem', fontWeight: 700 }}>{Math.round(day.maxTemp)}°</p>
+                      <p className="shine-blue" style={{ fontSize: '1.8rem', fontWeight: 700 }}>{Math.round(day.maxTemp)}°</p>
                     </div>
                     <div>
                       <p style={{ opacity: 0.5, fontSize: '0.9rem' }}>MIN</p>
