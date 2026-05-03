@@ -65,7 +65,7 @@ function NewsPage({ weather }) {
                   href={article.url} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="glass-panel" 
+                  className="glass-panel news-card" 
                   style={{ display: 'flex', padding: '1.5rem', gap: '2rem', textDecoration: 'none', color: '#0f172a', alignItems: 'center', transition: 'all 0.3s ease', border: '1px solid rgba(0,0,0,0.05)' }}
                   onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-5px) scale(1.01)'; e.currentTarget.style.borderColor = 'rgba(37,99,235,0.4)'; }}
                   onMouseLeave={(e) => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.borderColor = 'rgba(0,0,0,0.05)'; }}
@@ -74,6 +74,7 @@ function NewsPage({ weather }) {
                     <img 
                       src={article.imageUrl} 
                       alt="News thumbnail" 
+                      className="news-image"
                       style={{ width: '200px', height: '140px', objectFit: 'cover', borderRadius: '12px', border: '1px solid rgba(0,0,0,0.1)' }}
                     />
                   )}
