@@ -14,7 +14,8 @@ function NewsPage({ weather }) {
     const fetchDefaultNews = async () => {
       setLoading(true);
       try {
-        const res = await axios.get('http://localhost:5001/api/news');
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+        const res = await axios.get(`${apiUrl}/api/news`);
         setDefaultNews(res.data.articles);
       } catch (err) {
         console.error('Failed to fetch default news', err);

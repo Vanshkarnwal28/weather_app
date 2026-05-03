@@ -41,7 +41,8 @@ function AppContent() {
     setError(null);
 
     try {
-      const response = await axios.get(`http://localhost:5001/api/weather?city=${city}`);
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+      const response = await axios.get(`${apiUrl}/api/weather?city=${city}`);
       setWeather(response.data);
       // Automatically navigate to dashboard when a new city is successfully searched
       navigate('/dashboard');

@@ -13,7 +13,8 @@ function Dashboard({ weather, error, getWeatherIcon }) {
     const fetchDefaultWeather = async () => {
       setLoadingDefault(true);
       try {
-        const res = await axios.get('http://localhost:5001/api/weather?city=New Delhi');
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+        const res = await axios.get(`${apiUrl}/api/weather?city=New Delhi`);
         setDefaultWeather(res.data);
       } catch (err) {
         console.error('Failed to fetch default dashboard data', err);

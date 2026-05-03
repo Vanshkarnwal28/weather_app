@@ -15,7 +15,8 @@ function MapPage({ weather }) {
     const fetchPhotos = async () => {
       setLoadingPhotos(true);
       try {
-        const response = await axios.get(`http://localhost:5001/api/photos?city=${mapQuery}`);
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+        const response = await axios.get(`${apiUrl}/api/photos?city=${mapQuery}`);
         setPhotos(response.data.photos);
       } catch (err) {
         console.error('Failed to fetch photos', err);

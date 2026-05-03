@@ -15,7 +15,8 @@ function Forecast({ weather, getWeatherIcon }) {
       setLoading(true);
       try {
         // Fetch default weather for India (New Delhi)
-        const res = await axios.get('http://localhost:5001/api/weather?city=New Delhi');
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+        const res = await axios.get(`${apiUrl}/api/weather?city=New Delhi`);
         setDefaultForecast(res.data);
       } catch (err) {
         console.error('Failed to fetch default forecast', err);
