@@ -20,12 +20,12 @@ function HomePage({ city, setCity, fetchWeather, loading }) {
       >
         <Compass size={100} color="#2563eb" style={{ marginBottom: '1.5rem', filter: 'drop-shadow(0 0 30px rgba(37,99,235,0.2))' }} />
         
-        <h1 className="shine-text" style={{ fontSize: '6rem', fontWeight: 800, letterSpacing: '6px', margin: 0 }}>
+        <h1 className="shine-text hero-title" style={{ fontSize: '6rem', fontWeight: 800, letterSpacing: '6px', margin: 0 }}>
           AURA
         </h1>
         
         <p style={{ marginTop: '1rem', background: 'rgba(255,255,255,0.8)', padding: '8px 24px', borderRadius: '30px', border: '1px solid rgba(37,99,235,0.2)', boxShadow: '0 4px 15px rgba(0,0,0,0.05)' }}>
-          <span className="shine-blue" style={{ fontSize: '1.4rem', letterSpacing: '3px', fontWeight: 600 }}>GLOBAL TELEMETRY & NEWS</span>
+          <span className="shine-blue hero-subtitle" style={{ fontSize: '1.4rem', letterSpacing: '3px', fontWeight: 600 }}>GLOBAL TELEMETRY & NEWS</span>
         </p>
 
         <p style={{ marginTop: '3rem', maxWidth: '650px', fontSize: '1.1rem', color: '#475569', lineHeight: 1.8, letterSpacing: '0.5px' }}>

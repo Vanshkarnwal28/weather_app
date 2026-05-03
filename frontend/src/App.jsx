@@ -66,7 +66,7 @@ function AppContent() {
       <div className="gradient-bg"></div>
 
       {/* Dashboard Top Navigation - Always visible */}
-      <nav className="glass-panel" style={{ 
+      <nav className="glass-panel top-nav" style={{ 
         margin: '1.5rem', 
         padding: '1rem 2rem', 
         display: 'grid', 
@@ -79,7 +79,7 @@ function AppContent() {
         zIndex: 10
       }}>
         {/* Logo */}
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <div className="top-nav-logo" style={{ display: 'flex', flexDirection: 'column' }}>
           <Link to="/" style={{ textDecoration: 'none' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <Compass size={24} color="#2563eb" />
@@ -90,7 +90,7 @@ function AppContent() {
         </div>
 
         {/* Search Bar - Center */}
-        <form onSubmit={fetchWeather} style={{ display: 'flex', gap: '0.5rem', width: '100%', minWidth: '400px' }}>
+        <form onSubmit={fetchWeather} className="nav-search-form" style={{ display: 'flex', gap: '0.5rem', width: '100%', minWidth: '400px' }}>
           <input 
             type="text" 
             placeholder="Search for a city..." 
@@ -110,7 +110,7 @@ function AppContent() {
         </form>
 
         {/* Navigation Links - Right */}
-        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '1.5rem' }}>
+        <div className="nav-links-container" style={{ display: 'flex', justifyContent: 'flex-end', gap: '1.5rem' }}>
           <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: location.pathname === '/' ? '#2563eb' : '#64748b', textDecoration: 'none', fontWeight: 600, transition: 'all 0.3s ease', opacity: location.pathname === '/' ? 1 : 0.8 }}>
             <HomeIcon size={18} />
             <span className="nav-link-text">Home</span>

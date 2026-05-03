@@ -133,7 +133,7 @@ function ChatBot({ setCity, fetchWeather, weather, error }) {
   };
 
   return (
-    <div style={{ position: 'fixed', bottom: '2rem', right: '2rem', zIndex: 100, display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+    <div className="chatbot-container" style={{ position: 'fixed', bottom: '2rem', right: '2rem', zIndex: 100, display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
       
       <AnimatePresence>
         {isOpen && (
@@ -142,7 +142,7 @@ function ChatBot({ setCity, fetchWeather, weather, error }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
-            className="glass-panel"
+            className="glass-panel chatbot-window"
             style={{ 
               width: '350px', 
               height: '500px', 
